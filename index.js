@@ -3,10 +3,14 @@ console.log("Login - Register project");
 let name_ = document.getElementById("name");
 let email = document.getElementById("email");
 let contact = document.getElementById("contact");
+let pass1 = document.getElementById("pass1");
+let pass2 = document.getElementById("pass2");
 
 let nameAlert = document.getElementById("nameAlert");
 let emailAlert = document.getElementById("emailAlert");
 let contactAlert = document.getElementById("contactAlert");
+let pass1Alert = document.getElementById("pass1Alert");
+let pass2Alert = document.getElementById("pass2Alert");
 
 
 const validName = /^[a-zA-Z ]{2,30}$/;
@@ -19,7 +23,7 @@ name_.addEventListener('blur', function (e) {
     else {
         name_.classList.add("is-invalid");
         nameAlert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <h6>Please provide a proper name!</h6>
+                                    <small>Please provide a proper name!</small>
                                     <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -38,7 +42,7 @@ email.addEventListener('blur', function (e) {
     else {
         email.classList.add("is-invalid");
         emailAlert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <h6>Please provide a valid email address</h6>
+                                    <small>Please provide a valid email address</small>
                                     <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
@@ -57,11 +61,45 @@ contact.addEventListener('blur', function (e) {
     else {
         contact.classList.add("is-invalid");
         contactAlert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <h6>Please provide a valid Phone Number!</h6>
+                                    <small>Please provide a valid Phone Number!</small>
                                     <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>`;
     }
+});
 
+const validpass1 = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+pass1.addEventListener('blur', function (e) {
+    e.preventDefault();
+    if (validpass1.test(pass1.value)) {
+        pass1.classList.remove("is-invalid");
+        pass1Alert.innerHTML = ``;
+    }
+    else {
+        pass1.classList.add("is-invalid");
+        pass1Alert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <small>Password must contain minimum eight characters, at least one letter, one number and one special character:!</small>
+                                    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>`;
+    }
+});
+
+pass2.addEventListener('blur', function (e) {
+    e.preventDefault();
+    if (pass2.value == pass1.value) {
+        pass2.classList.remove("is-invalid");
+        pass2Alert.innerHTML = ``;
+    }
+    else {
+        pass2.classList.add("is-invalid");
+        pass2Alert.innerHTML = `<div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    <small>Confirmed password does not match!</small>
+                                    <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>`;
+    }
 });
